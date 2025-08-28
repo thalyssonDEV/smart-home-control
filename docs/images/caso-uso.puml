@@ -1,0 +1,34 @@
+@startuml
+
+left to right direction
+
+actor "Usuário" as user
+
+rectangle SmartHomeControl {
+  usecase "Navegar entre telas" as navegar
+  usecase "Vizualizar Cômodos" as comodos
+  usecase "Vizualizar Dispositivos" as dispositivos
+  usecase "Vizualizar Cenas" as cenas
+  usecase "Vizualizar detalhes Cômodo" as comodos_detalhes
+  usecase "Vizualizar detalhes Dispositivo" as dispositivos_detalhes
+  usecase "Vizualizar detalhes Cena" as cenas_detalhes
+  usecase "Adicionar Cômodo" as comodos_novo
+  usecase "Adicionar Dispositivo a Cômodo" as dispositivos_novo
+  usecase "Adicionar Cena com tasks de Dispositivos" as cenas_novo
+}
+
+user -- navegar
+
+navegar ..> comodos : <<include>>
+comodos <.. comodos_detalhes : <<extend>>
+comodos <.. comodos_novo : <<extend>>
+
+navegar <.right. dispositivos : <<extend>>
+dispositivos <.. dispositivos_detalhes : <<extend>>
+dispositivos <.. dispositivos_novo : <<extend>>
+
+navegar <.left. cenas : <<extend>>
+cenas <.. cenas_detalhes : <<extend>>
+cenas <.. cenas_novo : <<extend>>
+
+@enduml

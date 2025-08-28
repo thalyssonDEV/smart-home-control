@@ -1,0 +1,54 @@
+@startuml
+
+left to right direction
+
+class Comodo {
+  id
+  nome
+  Dispositivo[]
+  icone
+  create_comodo()
+  list_comodo()
+  update_comodo()
+  delete_comodo()
+}
+
+class Dispositivo {
+  id
+  nome
+  icone
+  status
+  create_dispositivo()
+  list_dispositivo()
+  update_dispositivo()
+  delete_dispositivo()
+}
+
+class Cena {
+  nome
+  ativo
+  emAndamento
+  Dispositivo[]
+  create_cena()
+  list_cena()
+  update_cena()
+  delete_cena()
+}
+
+class Task {
+  Dispositivo
+  Cena
+  timer
+  ativo
+  ordem
+  create_task()
+  list_task()
+  update_task()
+  delete_tsk()
+}
+
+Comodo *-- Dispositivo
+Dispositivo --o Cena
+Cena *-right- Task
+
+@enduml
