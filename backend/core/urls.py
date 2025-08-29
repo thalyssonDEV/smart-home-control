@@ -12,4 +12,5 @@ router.register(r'tasks', views.TaskViewSet, basename='task')
 urlpatterns = [
     path('', include(router.urls)),
     path('scenes/<int:scene_id>/tasks/', views.TasksInSceneListCreateView.as_view(), name='task-list-create-by-scene'),
+    path('scenes/<int:scene_id>/reorder-tasks/', views.ReorderTasksView.as_view(), name='reorder-tasks-in-scene'),
 ]
