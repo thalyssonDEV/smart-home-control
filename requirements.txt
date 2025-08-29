@@ -1,2 +1,7 @@
 django
 django-environ
+djangorestframework
+django-filter
+psycopg[binary]
+drf-spectacular 
+drf-spectacular-sidecar
