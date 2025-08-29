@@ -4,7 +4,7 @@ from .models import Room, Device, Scene, Task
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'icon']
         read_only_fields = ['id']
 
 

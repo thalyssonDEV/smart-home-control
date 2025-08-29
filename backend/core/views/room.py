@@ -7,4 +7,4 @@ class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
 
-    filterset_fields = ['name']
+    filterset_fields = ['name', 'icon']

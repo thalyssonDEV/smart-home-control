@@ -4,9 +4,10 @@ from django.db.models import Max
 # Modelagem do Banco de Dados
 class Room(models.Model):
     name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=50, blank=True, null=False) # Código do ícone do Cômodo
 
     def __str__(self):
-        return self.nome
+        return self.name
 
 
 class Device(models.Model):

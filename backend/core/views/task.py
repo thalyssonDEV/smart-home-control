@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from django.db import transaction
 from rest_framework import generics, viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 from ..models import Task, Scene
 from ..serializers import TaskSerializer, TaskSceneContextSerializer
 
@@ -26,3 +30,32 @@ class TasksInSceneListCreateView(generics.ListCreateAPIView):
         scene = Scene.objects.get(pk=scene_id)
 
         serializer.save(scene=scene)
+
+
+class ReorderTasksView(APIView):
+    def post(self, request, scene_id):
+
+        task_ids = request.data.get('ordered_task_ids', []) 
+
+        if not task_ids:
+            return Response(
+                {"detail": "Task list not provided."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        tasks = Task.objects.filter(scene_id=scene_id, pk__in=task_ids)
+
+        if tasks.count() != len(task_ids):
+            return Response(
+                {"detail": "Invalid or non-scene IDs."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        with transaction.atomic():
+            for new_order, task_id in enumerate(task_ids, start=1):
+                Task.objects.filter(pk=task_id, scene_id=scene_id).update(order=new_order)
+
+        updated_tasks = Task.objects.filter(scene_id=scene_id).order_by('order')
+        serializer = TaskSerializer(updated_tasks, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
