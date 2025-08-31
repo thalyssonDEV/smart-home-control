@@ -9,6 +9,7 @@ import { Layout } from "./pages/Layout";
 import { ListDevice } from "./pages/device/list-device";
 import { AddRoom } from "./pages/room/add-room";
 import { DeviceDetail } from "./pages/device/device-detail";
+import { AddDevice } from "./pages/device/add-device";
 
 function App() {
   return (
@@ -18,11 +19,12 @@ function App() {
           <Route index element={<ListRoom />} />
           <Route path="/comodos" element={<ListRoom />} />
           <Route path="/comodos/:id" element={<RoomDetail />} />
-          <Route path="/comodos/adicionar" element={<AddRoom />} />
+          <Route path="/comodos/novo" element={<AddRoom />} />
           <Route path="/dispositivos" element={<ListDevice />} />
           <Route path="/dispositivos/:id" element={<DeviceDetail />} />
+          <Route path="/dispositivos/novo" element={<AddDevice />} />
           <Route path="/cenas" element={<ListScene />} />
-          <Route path="/cenas/adicionar" element={<AddScene />} />
+          <Route path="/cenas/novo" element={<AddScene />} />
           <Route path="/cenas/:id" element={<SceneDetail />} />
         </Route>
       </Routes>
