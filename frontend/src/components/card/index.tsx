@@ -3,11 +3,12 @@ import React from "react";
 interface CardProps {
   showStatus?: boolean;
   status?: boolean;
-  toggle?: (prevState: boolean) => void;
+  toggle?: () => void;
   toggleStatus?: boolean;
   direction?: "row" | "column";
   icon?: string;
   title: string;
+  className?: string;
 }
 
 export const Card = ({
@@ -18,12 +19,13 @@ export const Card = ({
   title,
   direction = "column",
   icon,
+  className,
 }: CardProps) => {
   return (
     <div
       className={`bg-secondary p-5 rounded-md shadow-md w-full h-full flex ${
         direction === "row" ? "flex-row" : "flex-col"
-      } gap-3 text-center relative`}
+      } gap-3 text-center relative ${className}`}
     >
       {showStatus && (
         <div
@@ -40,7 +42,7 @@ export const Card = ({
           } ${
             toggleStatus ? "justify-end" : "justify-start"
           } absolute top-1 right-1 rounded-full p-1 cursor-pointer transition-all duration-500`}
-          onClick={() => toggle(toggleStatus!)}
+          onClick={toggle}
         >
           <div className="w-[30px] h-[30px] bg-secondary rounded-full transition-all duration-500"></div>
         </div>
