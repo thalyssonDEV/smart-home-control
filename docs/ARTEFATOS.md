@@ -23,17 +23,25 @@ Uma aplicação web de domótica que simula o controle de dispositivos de uma ca
 - O usuário deve ser capaz de adicionar novos Dispositivos a um Cômodo.
 - O usuário deve ser capaz de adicionar novas Cenas com tasks para Dispositivos.
 
+[Artefatos](#artefatos)
+
 ### Diagrama de Caso de Uso
 
 ![Diagrama de Caso de Uso](./images/caso-uso.png)
+
+[Artefatos](#artefatos)
 
 ### Diagrama de Classes
 
 ![Diagrama de Classes](./images/classes.png)
 
+[Artefatos](#artefatos)
+
 ### Diagrama de Entidade e Relacionamento (DER)
 
 ![Diagrama de Entidade e Relacionamento](./images/der.png)
+
+[Artefatos](#artefatos)
 
 ### Documentação de API (Endpoints)
 
