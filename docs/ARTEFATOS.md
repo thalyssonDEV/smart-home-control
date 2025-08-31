@@ -9,6 +9,7 @@ Uma aplicação web de domótica que simula o controle de dispositivos de uma ca
 - [Diagrama de Classes](#diagrama-de-classes)
 - [Diagrama de Entidade e Relacionamento (DER)](#diagrama-de-entidade-e-relacionamento-der)
 - [Documentação de API (Endpoints)](#documentação-de-api-endpoints)
+- [Mapa de Habilidades](#mapa-de-habilidades)
 
 ### Caso de Uso
 
@@ -46,3 +47,15 @@ Uma aplicação web de domótica que simula o controle de dispositivos de uma ca
 ### Documentação de API (Endpoints)
 
 TODO
+
+[Artefatos](#artefatos)
+
+### Mapa de Habilidades
+
+| Integrante | Engenharia de Software | Back end | Front end | Organização |
+| --- | --- | --- | --- | --- |
+| Gisele | | | | |
+| Hélio | Bom domínio | A dominar | A dominar | A dominar |
+| Thalysson | | | | |
+
+[Artefatos](#artefatos)
