@@ -1,23 +1,45 @@
 import { Link } from "react-router-dom";
 import { ActionButton } from "../../../components/action-button";
 import { Card } from "../../../components/card";
+import { useEffect, useState } from "react";
+import { httpClient } from "../../../services/api/api-client";
 
 export const ListRoom = () => {
-  return (
+  const [roomsData, setRoomsData] = useState([]);
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const response = await httpClient({
+          method: "GET",
+          endpoint: "/rooms",
+        });
+        setRoomsData(response.data);
+      } catch (error) {
+        console.error("Error fetching rooms:", error);
+      }
+    };
+
+    fetchRooms();
+  }, []);
+
+  return roomsData && roomsData.length > 0 ? (
     <div className="relative p-5 pb-[150px] ">
-      <div className="absolute right-3 top-3 w-[50px] h-[50px]">
+      <Link to={`/comodos/novo`}>
         <ActionButton icon="plus" />
-      </div>
+      </Link>
       <h1 className="text-center text-2xl font-bold">Cômodos</h1>
 
       <div className="grid grid-cols-2 pb-30 gap-5 mt-5">
-        {roomsMock.map((room) => (
+        {roomsData.map((room: any) => (
           <Link to={`/comodos/${room.id}`} key={room.id}>
             <Card title={room.name} icon={room.icon} />
           </Link>
         ))}
       </div>
     </div>
+  ) : (
+    <div className="text-center text-gray-500">Nenhum cômodo encontrado</div>
   );
 };
 const roomsMock = [
