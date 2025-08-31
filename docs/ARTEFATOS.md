@@ -33,7 +33,7 @@ Uma aplicação web de domótica que simula o controle de dispositivos de uma ca
 
 ### Diagrama de Entidade e Relacionamento (DER)
 
-TODO
+![Diagrama de Entidade e Relacionamento](./images/der.png)
 
 ### Documentação de API (Endpoints)
 
