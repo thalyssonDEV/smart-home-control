@@ -2,53 +2,41 @@
 
 left to right direction
 
-class Comodo {
-  id
-  nome
-  Dispositivo[]
-  icone
-  create_comodo()
-  list_comodo()
-  update_comodo()
-  delete_comodo()
+class Room {
+  name: String
+  icon: String
+  create_room(Room)
 }
 
-class Dispositivo {
-  id
-  nome
-  icone
-  status
-  create_dispositivo()
-  list_dispositivo()
-  update_dispositivo()
-  delete_dispositivo()
+class Device {
+  name: String
+  icon: String
+  state: Boolean
+  room: Room[]
+  create_device(Device)
+  toggle_state(Device)
 }
 
-class Cena {
-  nome
-  ativo
-  emAndamento
-  Dispositivo[]
-  create_cena()
-  list_cena()
-  update_cena()
-  delete_cena()
+class Scene {
+  name: String
+  state: Boolean
+  in_progress: Boolean
+  create_scene(Scene)
 }
 
 class Task {
-  Dispositivo
-  Cena
-  timer
-  ativo
-  ordem
-  create_task()
-  list_task()
-  update_task()
-  delete_tsk()
+  device: Device[]
+  scene: Scene[]
+  active: Boolean
+  action: Boolean
+  timer: Integer
+  order: Integer
+  create_task(Task)
+  update_task(Task)
 }
 
-Comodo *-- Dispositivo
-Dispositivo --o Cena
-Cena *-right- Task
+Room *-- Device
+Device --o Scene
+Scene *-right- Task
 
 @enduml
