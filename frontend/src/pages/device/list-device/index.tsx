@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ActionButton } from "../../../components/action-button";
 import { Card } from "../../../components/card";
 import { useEffect, useState } from "react";
@@ -20,19 +20,42 @@ export const ListDevice = ({ devices }: ListDeviceProps) => {
   console.log(devicesData);
 
   useEffect(() => {
-    const fetchDevicesData = async () => {
-      if (!devices) {
-        try {
-          const response = await fetchData({ endpoint: "/devices" });
-          setDevicesData(response);
-        } catch (error) {
-          console.error("Error fetching devices:", error);
-        }
-      }
-    };
-
     fetchDevicesData();
   }, []);
+
+  const toggleState = async (e: any, deviceId: number) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const fetchObj = {
+      method: "PATCH",
+      config: {
+        data: {
+          id: deviceId,
+        },
+      },
+      endpoint: "/devices/" + deviceId + "/",
+    };
+
+    try {
+      await fetchData(fetchObj);
+
+      fetchDevicesData();
+    } catch (error) {
+      console.error("Error toggling device state:", error);
+    }
+  };
+
+  const fetchDevicesData = async () => {
+    if (!devices) {
+      try {
+        const response = await fetchData({ endpoint: "/devices" });
+        setDevicesData(response);
+      } catch (error) {
+        console.error("Error fetching devices:", error);
+      }
+    }
+  };
 
   return (
     <div className="relative p-5 pb-[150px] ">
@@ -43,13 +66,20 @@ export const ListDevice = ({ devices }: ListDeviceProps) => {
 
       <div className="grid grid-cols-2 pb-30 gap-5 mt-5">
         {devicesData.map((device) => (
-          <Card
+          <Link
+            to={`/dispositivos/${device.id}`}
             key={device.id}
-            title={device.name}
-            icon={device.icon}
-            showStatus={true}
-            status={device.state}
-          />
+            state={{ selectedDevice: device }}
+          >
+            <Card
+              title={device.name}
+              icon={device.icon}
+              toggle={(e) => toggleState(e, device.id)}
+              toggleStatus={device.state}
+              toggleSize="md"
+              className="pt-[40px]"
+            />
+          </Link>
         ))}
       </div>
     </div>
