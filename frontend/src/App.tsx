@@ -21,7 +21,7 @@ function App() {
           <Route path="/comodos/:id" element={<RoomDetail />} />
           <Route path="/comodos/novo" element={<AddRoom />} />
           <Route path="/dispositivos" element={<ListDevice />} />
-          <Route path="/dispositivos/:id" element={<DeviceDetail />} />
+          <Route path="/dispositivos/:id" element={<AddDevice />} />
           <Route path="/dispositivos/novo" element={<AddDevice />} />
           <Route path="/cenas" element={<ListScene />} />
           <Route path="/cenas/novo" element={<AddScene />} />
