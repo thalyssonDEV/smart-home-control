@@ -94,16 +94,26 @@ WSGI_APPLICATION = 'smart_home.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME_DB'),
-        'USER': env('USER_DB'),
-        'PASSWORD': env('PASSWORD_DB'),
-        'HOST': env('HOST_DB'),
-        'PORT': env('PORT_DB'),
+if env("LOCALHOST"):
+    # Banco SQLite para desenvolvimento local
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    # Banco PostgreSQL para produção/servidor
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("NAME_DB"),
+            "USER": env("USER_DB"),
+            "PASSWORD": env("PASSWORD_DB"),
+            "HOST": env("HOST_DB"),
+            "PORT": env("PORT_DB"),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
