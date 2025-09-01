@@ -1,7 +1,8 @@
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Card } from "../../../components/card";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../insfrastructure/fetch-data";
+import { ActionButton } from "../../../components/action-button";
 
 export const SceneDetail = () => {
   const params = useParams<{ id: string }>();
@@ -29,10 +30,13 @@ export const SceneDetail = () => {
   };
 
   return (
-    <div>
+    <div className="relative">
+      <Link to={`/cenas/novo`} state={scene}>
+        <ActionButton icon="edit" />
+      </Link>
       {scene && (
         <>
-          <h1 className="text-center text-2xl font-bold m-3">
+          <h1 className="text-center text-2xl font-bold p-3">
             <i className={`fa-solid ${scene.icon}`}></i>
             {scene.name}
           </h1>
