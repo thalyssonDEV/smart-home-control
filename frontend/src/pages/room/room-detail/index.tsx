@@ -19,21 +19,49 @@ export const RoomDetail = () => {
         });
 
         setRoomData(roomsResponse);
-
-        const roomsDevicesResponse = await fetchData({
-          endpoint: `/devices/?room=${roomId}`,
-        });
-        setRoomsDevicesData(roomsDevicesResponse);
       } catch (error) {
         console.error("Error fetching room data:", error);
       }
     };
 
     fetchRoomData();
+    fetchDevicesData();
   }, []);
 
-  console.log(roomData);
-  console.log(roomsDevicesData);
+  const toggleState = async (e: any, deviceId: number) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const fetchObj = {
+      method: "PATCH",
+      config: {
+        data: {
+          id: deviceId,
+        },
+      },
+      endpoint: "/devices/" + deviceId + "/",
+    };
+
+    try {
+      await fetchData(fetchObj);
+
+      fetchDevicesData();
+    } catch (error) {
+      console.error("Error toggling device state:", error);
+    }
+  };
+
+  const fetchDevicesData = async () => {
+    try {
+      const roomsDevicesResponse = await fetchData({
+        endpoint: `/devices?room=${roomId}`,
+      });
+
+      setRoomsDevicesData(roomsDevicesResponse);
+    } catch (error) {
+      console.error("Error fetching devices:", error);
+    }
+  };
 
   return (
     <div>
@@ -58,13 +86,20 @@ export const RoomDetail = () => {
           </h1>
           <div className="grid grid-cols-2 pb-30 gap-5 mt-5">
             {roomsDevicesData.map((device) => (
-              <Card
+              <Link
+                to={`/dispositivos/${device.id}`}
                 key={device.id}
-                title={device.name}
-                icon={device.icon}
-                showStatus={true}
-                status={device.state}
-              />
+                state={{ selectedDevice: device }}
+              >
+                <Card
+                  title={device.name}
+                  icon={device.icon}
+                  toggle={(e) => toggleState(e, device.id)}
+                  toggleStatus={device.state}
+                  toggleSize="md"
+                  className="pt-[40px]"
+                />
+              </Link>
             ))}
           </div>
         </div>
