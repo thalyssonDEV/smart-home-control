@@ -64,8 +64,6 @@ export const AddDevice = () => {
         endpoint: "/devices/" + (selectedDevice ? `${selectedDevice.id}/` : ""),
       };
 
-      console.log(fetchObj);
-
       try {
         const response = await httpClient(fetchObj);
         console.log(
@@ -78,8 +76,6 @@ export const AddDevice = () => {
       }
     },
   });
-
-  console.log(selectedDevice);
 
   return (
     <div className="relative">

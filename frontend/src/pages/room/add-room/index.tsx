@@ -64,8 +64,6 @@ export const AddRoom = () => {
       },
     });
 
-  console.log(values);
-
   return (
     <div className="relative pb-[8rem]">
       <h1 className="text-center text-2xl font-bold m-4">
