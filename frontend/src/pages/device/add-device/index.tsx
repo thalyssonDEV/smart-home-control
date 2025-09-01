@@ -5,9 +5,14 @@ import { Input } from "../../../components/input";
 import { IconSelector } from "../../../components/icon-selector";
 import { useEffect, useState } from "react";
 import Dropdown from "../../../components/dropdown";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const AddDevice = () => {
   const [roomsData, setRoomsData] = useState([]);
+  const [selectedDevice, setSelectedDevice] = useState<any>(null);
+  const location = useLocation();
+  const { state } = location;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -25,39 +30,56 @@ export const AddDevice = () => {
     fetchRooms();
   }, []);
 
+  useEffect(() => {
+    if (state && state.selectedDevice) {
+      setSelectedDevice(state.selectedDevice);
+    }
+  }, [state]);
+
   const { values, handleSubmit, handleChange, setFieldValue } = useFormik({
     initialValues: {
-      name: "",
-      icon: "",
-      room: "",
+      name: selectedDevice ? selectedDevice.name : "",
+      icon: selectedDevice ? selectedDevice.icon : "",
+      room: selectedDevice ? selectedDevice.room : "",
     },
+    enableReinitialize: true,
     onSubmit: async (values) => {
       const newRoom = {
         name: values.name,
         icon: values.icon,
+        state: selectedDevice ? selectedDevice.state : false,
         room: Number(values.room),
       };
 
       const fetchObj = {
-        method: "POST",
+        method: selectedDevice ? "PUT" : "POST",
         config: {
           data: {
             name: newRoom.name,
             icon: newRoom.icon,
             room: newRoom.room,
+            state: newRoom.state,
           },
         },
-        endpoint: "/devices/",
+        endpoint: "/devices/" + (selectedDevice ? `${selectedDevice.id}/` : ""),
       };
+
+      console.log(fetchObj);
 
       try {
         const response = await httpClient(fetchObj);
-        console.log("Device added successfully:", response.data);
+        console.log(
+          `Device ${selectedDevice ? "updated" : "added"} successfully:`,
+          response.data
+        );
+        navigate(`/dispositivos/`);
       } catch (error) {
         console.error("Error adding device:", error);
       }
     },
   });
+
+  console.log(selectedDevice);
 
   return (
     <div className="relative">
