@@ -3,7 +3,7 @@ from rest_framework import generics, viewsets, status
 from ..models import Scene, Task, Device
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from ..serializers import SceneSerializer, DeviceSerializer
+from ..serializers import SceneSerializer, DeviceSerializer, TaskSerializer
 import time
 
 
@@ -42,7 +42,7 @@ class SceneViewSet(viewsets.ModelViewSet):
             scene.in_progress = False
             scene.save()
 
-            serializer = TaskSerializer(tasks_to_run, many=True)
+            serializer = TaskSerializer(tasks, many=True)
 
             return Response(serializer.data, status=status.HTTP_200_OK)
 
