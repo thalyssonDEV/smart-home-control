@@ -4,7 +4,7 @@ from ..models import Device
 from ..serializers import DeviceSerializer
 
 class DeviceViewSet(viewsets.ModelViewSet):
-    queryset = Device.objects.all()
+    queryset = Device.objects.all().order_by('id')
     serializer_class = DeviceSerializer
 
     filterset_fields = ['name', 'room', 'state', 'icon']

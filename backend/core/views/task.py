@@ -10,7 +10,7 @@ from django.db.models import F
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
+    queryset = Task.objects.all().order_by('id')
     serializer_class = TaskSerializer
 
     filterset_fields = ['device', 'scene', 'active', 'action', 'timer', 'order']
