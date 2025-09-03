@@ -4,7 +4,7 @@ from ..models import Room
 from ..serializers import RoomSerializer
 
 class RoomViewSet(viewsets.ModelViewSet):
-    queryset = Room.objects.all()
+    queryset = Room.objects.all().order_by('id')
     serializer_class = RoomSerializer
 
     filterset_fields = ['name', 'icon']
