@@ -46,7 +46,31 @@ Uma aplicação web de domótica que simula o controle de dispositivos de uma ca
 
 ### Documentação de API (Endpoints)
 
-TODO
+1. Cômodos (Rooms)
+    - Listar todos os cômodos
+    - Criar um novo cômodo
+    - Obter detalhes de um cômodo
+    - Atualizar um cômodo
+    - Deletar um cômodo
+1. Dispositivos (Devices)
+    - Listar todos os dispositivos
+    - Criar um novo dispositivo
+    - Obter detalhes de um dispositivo
+    - Atualizar um dispositivo
+    - Deletar um dispositivo
+1. Cenas (Scenes)
+    - Listar todas as cenas
+    - Criar uma nova cena
+    - Obter detalhes de uma cena
+    - Atualizar uma cena
+    - Deletar uma cena
+1. Tarefas (Tasks)
+    - Listar todas as tarefas de uma cena
+    - Criar uma nova tarefa em uma cena
+    - Reordenar tarefas de uma cena
+    - Obter detalhes de uma tarefa
+    - Atualizar uma tarefa
+    - Deletar uma tarefa
 
 [Artefatos](#artefatos)
 
