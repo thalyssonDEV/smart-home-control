@@ -85,7 +85,8 @@ export const AddRoom = () => {
           onChange={(iconValue) => setFieldValue("icon", iconValue)}
         />
 
-        <DevicesSelector
+        {/* <DevicesSelector
+          roomId={selectedRoom ? selectedRoom.id : ""}
           selectedDevices={values.devices}
           onDeviceSelect={(device) => {
             const newDevices = [...values.devices, device];
@@ -93,7 +94,7 @@ export const AddRoom = () => {
           }}
           value={values.devices}
           setValue={(devices) => setFieldValue("devices", devices)}
-        />
+        /> */}
       </form>
     </div>
   );
