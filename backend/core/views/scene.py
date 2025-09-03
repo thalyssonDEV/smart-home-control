@@ -41,9 +41,8 @@ class SceneViewSet(viewsets.ModelViewSet):
 
             scene.in_progress = False
             scene.save()
-            
-            updated_devices = Device.objects.filter(tasks__in=tasks).distinct()
-            serializer = DeviceSerializer(updated_devices, many=True)
+
+            serializer = TaskSerializer(tasks_to_run, many=True)
 
             return Response(serializer.data, status=status.HTTP_200_OK)
 
