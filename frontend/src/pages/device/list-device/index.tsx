@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ActionButton } from "../../../components/action-button";
 import { Card } from "../../../components/card";
 import { useEffect, useState } from "react";

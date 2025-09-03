@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../insfrastructure/fetch-data";
 import { ActionButton } from "../action-button";
 import Dropdown from "../dropdown";
-import { Card } from "../card";
 import { Input } from "../input";
 
 interface TaskSelectorProps {

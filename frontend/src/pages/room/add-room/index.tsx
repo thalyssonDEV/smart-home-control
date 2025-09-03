@@ -4,7 +4,6 @@ import { Input } from "../../../components/input";
 import { ActionButton } from "../../../components/action-button";
 import { httpClient } from "../../../services/api/api-client";
 import { useLocation, useNavigate } from "react-router-dom";
-import { DevicesSelector } from "../../../components/devices-selector";
 import { useEffect, useState } from "react";
 
 interface AddRoomProps {

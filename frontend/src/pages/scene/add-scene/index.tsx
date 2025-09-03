@@ -2,10 +2,8 @@ import { useFormik } from "formik";
 import { IconSelector } from "../../../components/icon-selector";
 import { Input } from "../../../components/input";
 import { useEffect, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { httpClient } from "../../../services/api/api-client";
-import { DevicesSelector } from "../../../components/devices-selector";
-import { TaskSelector } from "../../../components/tasks-selector";
 import { ActionButton } from "../../../components/action-button";
 
 export const AddScene = () => {
