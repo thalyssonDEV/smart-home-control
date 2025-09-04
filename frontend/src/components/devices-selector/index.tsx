@@ -9,6 +9,7 @@ interface DevicesSelectorProps {
   onDeviceSelect: (device: any) => void;
   value: any;
   setValue: (value: any) => void;
+  roomId?: string;
 }
 
 export const DevicesSelector = ({
@@ -16,6 +17,7 @@ export const DevicesSelector = ({
   onDeviceSelect,
   value,
   setValue,
+  roomId,
 }: DevicesSelectorProps) => {
   const [showDevicesDropdown, setShowDevicesDropdown] = useState(false);
   const [allDevices, setAllDevices] = useState<any[]>([]);
@@ -36,6 +38,42 @@ export const DevicesSelector = ({
       (device: any) => device.id !== deviceId
     );
     setValue(filtered);
+  };
+
+  const handleAddDeviceToRoom = async (e: any) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const deviceToAdd = allDevices.find(
+      (device) => device.id.toString() === selectedDeviceId
+    );
+    if (!deviceToAdd) return;
+
+    // const fetchObj = {
+    //   method: "PUT",
+    //   config: {
+    //     data: {
+    //       id: deviceToAdd.id,
+    //       name: deviceToAdd.name,
+    //       icon: deviceToAdd.icon,
+    //       room: roomId,
+    //     },
+    //   },
+    //   endpoint: `/devices/${deviceToAdd.id}/`,
+    // };
+
+    // console.log(fetchObj);
+
+    const alreadyAdded = selectedDevices.some((d) => d.id === deviceToAdd.id);
+
+    if (alreadyAdded) {
+      console.log("Este dispositivo já foi adicionado.");
+      return;
+    }
+    // const response = await fetchData(fetchObj);
+    // console.log("Dispositivo adicionado com sucesso:", response);
+
+    onDeviceSelect(deviceToAdd);
+    setSelectedDeviceId("");
   };
 
   return (
@@ -65,26 +103,7 @@ export const DevicesSelector = ({
 
           <button
             className="bg-secondary px-4 py-2 rounded-md mb-4 shadow-md"
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              const deviceToAdd = allDevices.find(
-                (device) => device.id.toString() === selectedDeviceId
-              );
-              if (!deviceToAdd) return;
-
-              const alreadyAdded = selectedDevices.some(
-                (d) => d.id === deviceToAdd.id
-              );
-
-              if (alreadyAdded) {
-                console.log("Este dispositivo já foi adicionado.");
-                return;
-              }
-
-              onDeviceSelect(deviceToAdd);
-              setSelectedDeviceId("");
-            }}
+            onClick={(e) => handleAddDeviceToRoom(e)}
           >
             Adicionar Dispositivo
           </button>

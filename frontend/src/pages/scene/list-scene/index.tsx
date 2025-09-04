@@ -28,7 +28,9 @@ export const ListScene = () => {
 
   return (
     <div className="relative p-5 pb-[150px] ">
-      <ActionButton icon="plus" />
+      <Link to="/cenas/novo">
+        <ActionButton icon="plus" />
+      </Link>
       <h1 className="text-center text-2xl font-bold">Cenas</h1>
 
       {!loading ? (
@@ -43,8 +45,8 @@ export const ListScene = () => {
                 <Card
                   key={scene.id}
                   title={scene.name}
-                  showStatus={true}
-                  status={scene.state}
+                  // showStatus={true}
+                  // status={scene.state}
                   icon={scene.icon}
                   toggleStatus={scene.in_progress}
                 />

@@ -8,7 +8,7 @@ interface CardProps {
   toggleSize?: "lg" | "md" | "sm";
   direction?: "row" | "column";
   icon?: string;
-  title: string;
+  title: string | React.ReactNode;
   className?: string;
 }
 
@@ -71,7 +71,7 @@ export const Card = ({
           <i className={`fa-solid ${icon} text-2xl`}></i>
         </div>
       )}
-      <p>{title}</p>
+      <div>{title}</div>
     </div>
   );
 };

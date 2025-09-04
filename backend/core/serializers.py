@@ -23,6 +23,9 @@ class DeviceSerializer(serializers.ModelSerializer):
         
 
 class TaskSceneContextSerializer(serializers.ModelSerializer):
+
+    device = DeviceSerializer(read_only=True)
+    
     class Meta:
         model = Task
         fields = ['id', 'device', 'scene', 'active', 'action', 'timer', 'order']
