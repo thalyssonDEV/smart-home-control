@@ -4,7 +4,6 @@ import { Input } from "../../../components/input";
 import { ActionButton } from "../../../components/action-button";
 import { httpClient } from "../../../services/api/api-client";
 import { useLocation, useNavigate } from "react-router-dom";
-import { DevicesSelector } from "../../../components/devices-selector";
 import { useEffect, useState } from "react";
 
 interface AddRoomProps {
@@ -85,7 +84,8 @@ export const AddRoom = () => {
           onChange={(iconValue) => setFieldValue("icon", iconValue)}
         />
 
-        <DevicesSelector
+        {/* <DevicesSelector
+          roomId={selectedRoom ? selectedRoom.id : ""}
           selectedDevices={values.devices}
           onDeviceSelect={(device) => {
             const newDevices = [...values.devices, device];
@@ -93,7 +93,7 @@ export const AddRoom = () => {
           }}
           value={values.devices}
           setValue={(devices) => setFieldValue("devices", devices)}
-        />
+        /> */}
       </form>
     </div>
   );

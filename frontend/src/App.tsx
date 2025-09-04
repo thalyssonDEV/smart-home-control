@@ -8,7 +8,6 @@ import { SceneDetail } from "./pages/scene/scene-detail";
 import { Layout } from "./pages/Layout";
 import { ListDevice } from "./pages/device/list-device";
 import { AddRoom } from "./pages/room/add-room";
-import { DeviceDetail } from "./pages/device/device-detail";
 import { AddDevice } from "./pages/device/add-device";
 
 function App() {
